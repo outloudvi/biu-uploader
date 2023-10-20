@@ -22,7 +22,7 @@ pub(crate) fn guard_bitrate(bit_rate: u64) -> Result<()> {
 pub(crate) fn guard_metadata(tags: &FfmpegTags) -> Result<SubmittedMusicMetadata> {
     let meta_title = tags.title.clone().unwrap_or_default();
     let title: String = Input::new()
-        .with_prompt("Title")
+        .with_prompt("标题")
         .default(meta_title)
         .interact_text()?;
 
@@ -31,13 +31,13 @@ pub(crate) fn guard_metadata(tags: &FfmpegTags) -> Result<SubmittedMusicMetadata
         .clone()
         .unwrap_or(tags.album_artist.clone().unwrap_or_default());
     let artist: String = Input::new()
-        .with_prompt("Artist")
+        .with_prompt("歌手")
         .default(meta_artist)
         .interact_text()?;
 
     let meta_title = tags.album.clone().unwrap_or_default();
     let album: String = Input::new()
-        .with_prompt("Album")
+        .with_prompt("专辑")
         .default(meta_title)
         .interact_text()?;
 
@@ -58,7 +58,7 @@ pub(crate) fn guard_category() -> Result<MusicCategory> {
         MusicCategory::Doujin,
     ];
     let value = Select::new()
-        .with_prompt("Category")
+        .with_prompt("分类")
         .items(&selections)
         .interact()?;
 
@@ -74,7 +74,7 @@ pub(crate) fn guard_type() -> Result<MusicType> {
         MusicType::Others,
     ];
     let value = Select::new()
-        .with_prompt("Type")
+        .with_prompt("类别")
         .items(&selections)
         .interact()?;
 
